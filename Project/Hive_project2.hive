@@ -1,0 +1,11 @@
+--Activity 2
+CREATE TABLE ep4dialogs (name STRING, line STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+TBLPROPERTIES ("skip.header.line.count"=""2");
+
+--Load data
+LOAD DATA LOCAL INPATH '/user/root/projectFiles/episodeIV_dialouges' INTO TABLE ep4dialogs; 
+
+--Get no. of times luke was mentioned
+SELECT COUNT(*) FROM ep4dialogs 
+WHERE line LIKE'%Luke%';

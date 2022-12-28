@@ -1,0 +1,12 @@
+CREATE TABLE dialogs (line STRING);
+
+--Load data into the table
+LOAD DATA LOCAL INPATH '/user/root/projectFiles' INTO TABLE dialogs;
+
+--Count the no. of lines
+
+CREATE TABLE dialouge_count AS
+SELECT name, count(1) AS count FROM
+(SELECT split(line, '\t')[0] AS name FROM dialogs) n
+GROUP BY n.name
+ORDER BY count DESC;
